@@ -32,11 +32,12 @@ namespace InfApp
                options.UseSqlServer(_config.GetConnectionString("MyConnection"));
            });
 
+            services.AddTransient<DbSeeder>();
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DbSeeder seeder)
         {
             if (env.IsDevelopment())
             {
@@ -52,6 +53,8 @@ namespace InfApp
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
+
+            seeder.SeedDatabase().Wait();
             
         }
     }
