@@ -1,0 +1,15 @@
+﻿@model InfApp.ViewModels.StudentTeacherViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Welcome, friend!!</h1>
+        <p>We are learing ASP.NET Core</p>
+    </div>
+</div>
+
+@* prevent dead lock *@
+@await Html.PartialAsync("_TeacherTable", Model)
