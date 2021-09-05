@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using InfApp.Data;
 using Microsoft.EntityFrameworkCore;
+using InfApp.Data.Repository;
 
 namespace InfApp
 {
@@ -33,6 +34,8 @@ namespace InfApp
            });
 
             services.AddTransient<DbSeeder>();
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+          
             services.AddMvc();
         }
 

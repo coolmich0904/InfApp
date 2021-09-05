@@ -1,4 +1,5 @@
-﻿using InfApp.Models;
+﻿using InfApp.Data.Repository;
+using InfApp.Models;
 using InfApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,16 +11,23 @@ namespace InfApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ITeacherRepository _repository;
 
+        public HomeController(ITeacherRepository repository)
+        {
+            _repository = repository;
+        }
         public IActionResult Index()
         {
-            List<Teacher> teachers = new List<Teacher>()
-            {
-                new Teacher() {Name="James", Class="C# Programming"},
-                new Teacher() { Name="Eliana", Class="Data Structure" },
-                new Teacher() { Name="Edgar", Class="Modern Javascript"},
-                new Teacher() { Name="Shan", Class="Project Management"}
-            };
+            //List<Teacher> teachers = new List<Teacher>()
+            //{
+            //    new Teacher() {Name="James", Class="C# Programming"},
+            //    new Teacher() { Name="Eliana", Class="Data Structure" },
+            //    new Teacher() { Name="Edgar", Class="Modern Javascript"},
+            //    new Teacher() { Name="Shan", Class="Project Management"}
+            //};
+
+            var teachers = _repository.GetAllTeachers();
 
             var viewModel = new StudentTeacherViewModel()
             {

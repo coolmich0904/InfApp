@@ -27,6 +27,7 @@ namespace InfApp.Data
                 };
 
                 await _context.AddRangeAsync(teachers);
+                //await _context.AddAsync(new Teacher() { Name = "James", Class = "C# Programming" });
                 await _context.SaveChangesAsync();
             }
         }
